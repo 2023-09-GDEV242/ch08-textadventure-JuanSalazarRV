@@ -198,8 +198,9 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to 'lost in mall'");
+        System.out.println("You have been trap inside the mall after closing");
+        System.out.println("You need to find a way to get out");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -231,6 +232,10 @@ public class Game
                 
             case LOOK:
                 look();
+                break;
+                
+            case EAT:
+                System.out.println("You have eaten now, you are not hungry anymore.");
                 break;
                
             case QUIT:
