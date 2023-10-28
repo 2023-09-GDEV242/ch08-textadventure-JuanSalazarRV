@@ -34,30 +34,144 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room spawnPoint, hallwayEast, hallwayEastSecondFloor, hallwayEastThirdFloor, pink, pandora, macys, macysSecondFloor, 
+        macysThirdFloor, hallwayWest, hallwayWestSecondFloor, hallwayWestThirdFloor, hottopic, 
+        gamestop, bloomingdales,bloomingdalesSecondFloor, bloomingdalesThirdFloor, 
+        hallwayNorth, att, apple, secondFloor,  forever21, claires, lego, starbucks, thirdFloor, cinema, garage, 
+        holister, foodQuarter, exit, restroom;
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        spawnPoint = new Room("in the main Entrance of the mall(1st floor)");
+        hallwayEast = new Room("in the east hallway of the mall(1st floor)");
+        hallwayEastSecondFloor = new Room("in the east hallway of the mall(2nd floor)");
+        hallwayEastThirdFloor = new Room("in the east hallway of the mall(3rd floor)");
+        hallwayWest = new Room("in the west hallway of the mall(1st floor)");
+        hallwayWestSecondFloor = new Room("in the west hallway of the mall(2nd floor)");
+        hallwayWestThirdFloor = new Room("in the west hallway of the mall(3rd floor)");
+        hallwayNorth = new Room("in the north hallway of the mall(1st floor)");
+        pink = new Room("in the clothing store, Pink");
+        pandora = new Room("in the jewery store, Pandora");
+        macys = new Room("in the store of Macy's");
+        macysSecondFloor = new Room("in the second floor of Macy's");
+        macysThirdFloor = new Room("in the third floor of Macy's");
+        hottopic = new Room("in HotTopic");
+        gamestop = new Room("in the game store of GameStop");
+        bloomingdales= new Room("in the store of Bloomingdale's");
+        bloomingdalesSecondFloor = new Room("in the second floor of Bloomingdale's");
+        bloomingdalesThirdFloor = new Room("in the third floor of Bloomingdales");
+        att = new Room("in the phone store, AT&T");
+        apple = new Room("in the phone store, Apple");
+        secondFloor = new Room("at the top of the stairs second floor of the mall");
+        forever21 = new Room("in the clothing store, Forever 21");
+        claires = new Room("in the store of Claire's");
+        lego = new Room("in the Lego store");
+        starbucks = new Room("in the coffee store, Starbucks");
+        thirdFloor = new Room("at the top of the stairs third floor of the mall");
+        cinema = new Room("in the cinema");
+        garage = new Room("in the clothing store, Garage");
+        holister = new Room("in the clothing store, Holister");
+        foodQuarter = new Room("in the food quarter of the mall");
+        exit = new Room("in the main Exit");
+        restroom = new Room("in the restrooms by the food quarter");
         
         // initialise room exits
-        outside.setExit("east", theater);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        spawnPoint.setExit("east", hallwayEast);
+        spawnPoint.setExit("north", hallwayNorth);
+        spawnPoint.setExit("west", hallwayWest);
+        spawnPoint.setExit("south", exit);
+        
+        hallwayEast.setExit("north", pink);
+        hallwayEast.setExit("east", macys);
+        hallwayEast.setExit("south", pandora);
+        hallwayEast.setExit("west", spawnPoint);
 
-        theater.setExit("west", outside);
+        hallwayNorth.setExit("west", apple);
+        hallwayNorth.setExit("east", att);
+        hallwayNorth.setExit("south", spawnPoint);
+        hallwayNorth.setExit("north", secondFloor);
+        
+        hallwayWest.setExit("west", bloomingdales);
+        hallwayWest.setExit("east", spawnPoint);
+        hallwayWest.setExit("south", gamestop);
+        hallwayWest.setExit("north", hottopic);
+        
+        exit.setExit("north", spawnPoint);
+        
+        pink.setExit("south", hallwayEast);
+        pandora.setExit("north", hallwayEast);
+        macys.setExit("west", hallwayEast);
+        macys.setExit("north", macysSecondFloor);
+        
+        macysSecondFloor.setExit("north", macysThirdFloor);
+        macysSecondFloor.setExit("west", hallwayEastSecondFloor);
+        macysSecondFloor.setExit("south", macys);
+        
+        macysThirdFloor.setExit("west", hallwayEastThirdFloor);
+        macysThirdFloor.setExit("south", macysSecondFloor);
+        
+        apple.setExit("east", hallwayNorth);
+        att.setExit("west", hallwayNorth);
+                
+        hottopic.setExit("south", hallwayWest);
+        gamestop.setExit("north", hallwayWest);
+        
+        bloomingdales.setExit("east", hallwayWest);
+        bloomingdales.setExit("north", bloomingdalesSecondFloor);
+        
+        bloomingdalesSecondFloor.setExit("north", bloomingdalesThirdFloor);
+        bloomingdalesSecondFloor.setExit("east", hallwayWestSecondFloor);
+        bloomingdalesSecondFloor.setExit("south", bloomingdales);
+        
+        bloomingdalesThirdFloor.setExit("east", hallwayWestThirdFloor);
+        bloomingdalesThirdFloor.setExit("south", bloomingdalesSecondFloor);
+        
+        //second floor
+        secondFloor.setExit("east", hallwayEastSecondFloor);
+        secondFloor.setExit("north", thirdFloor);
+        secondFloor.setExit("west", hallwayWestSecondFloor);
+        secondFloor.setExit("south", hallwayNorth);
+        
+        hallwayEastSecondFloor.setExit("north", starbucks);
+        hallwayEastSecondFloor.setExit("east", macysSecondFloor);
+        hallwayEastSecondFloor.setExit("south", lego);
+        hallwayEastSecondFloor.setExit("west", secondFloor);
+        
+        hallwayWestSecondFloor.setExit("north", forever21);
+        hallwayWestSecondFloor.setExit("east", secondFloor);
+        hallwayWestSecondFloor.setExit("south", claires);
+        hallwayWestSecondFloor.setExit("west", bloomingdalesSecondFloor);
+        
+        starbucks.setExit("south", hallwayEastSecondFloor);
+        lego.setExit("north", hallwayEastSecondFloor);
+        
+        forever21.setExit("south", hallwayWestSecondFloor);
+        claires.setExit("north", hallwayWestSecondFloor);
 
-        pub.setExit("east", outside);
+        //third floor
+        thirdFloor.setExit("east", hallwayEastThirdFloor);
+        thirdFloor.setExit("west", hallwayWestThirdFloor);
+        thirdFloor.setExit("south", secondFloor);
+        
+        hallwayEastThirdFloor.setExit("north", holister);
+        hallwayEastThirdFloor.setExit("east", macysThirdFloor);
+        hallwayEastThirdFloor.setExit("south", foodQuarter);
+        hallwayEastThirdFloor.setExit("west", thirdFloor);
+        
+        hallwayWestThirdFloor.setExit("north", cinema);
+        hallwayWestThirdFloor.setExit("east", thirdFloor);
+        hallwayWestThirdFloor.setExit("south", garage);
+        hallwayWestThirdFloor.setExit("west", bloomingdalesThirdFloor);
 
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
+        holister.setExit("south", hallwayEastThirdFloor);
+        foodQuarter.setExit("north", hallwayEastThirdFloor);
+        foodQuarter.setExit("west", restroom);
+        
+        cinema.setExit("south", hallwayWestThirdFloor);
+        garage.setExit("north", hallwayWestThirdFloor);
+        
+        restroom.setExit("east", foodQuarter);
 
-        office.setExit("west", lab);
-
-        currentRoom = outside;  // start game outside
+        currentRoom = spawnPoint;  // start game outside
     }
 
     /**
