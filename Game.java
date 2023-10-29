@@ -51,9 +51,9 @@ public class Game
         hallwayNorth, att, apple, secondFloor,  forever21, claires, lego, starbucks, thirdFloor, cinema, garage, 
         holister, foodQuarter, exit, restroom;
         
-        Item ring;
+        Item pandoraItems[] = {new Item("ring",1)};
         
-        ring = new Item("Ring: A beatiful diamong ring at the top of the counter", 1);
+        
       
         // create the rooms
         spawnPoint = new Room("in the main entrance of the mall(1st floor)");
@@ -65,7 +65,7 @@ public class Game
         hallwayWestThirdFloor = new Room("in the west hallway of the mall(3rd floor)");
         hallwayNorth = new Room("in the north hallway of the mall(1st floor)");
         pink = new Room("in the clothing store, Pink");
-        pandora = new Room("in the jewery store, Pandora", ring);
+        pandora = new Room("in the jewery store, Pandora");
         macys = new Room("in the store of Macy's");
         macysSecondFloor = new Room("in the second floor of Macy's");
         macysThirdFloor = new Room("in the third floor of Macy's");
@@ -88,6 +88,10 @@ public class Game
         foodQuarter = new Room("in the food quarter of the mall");
         exit = new Room("in the main exit");
         restroom = new Room("in the restrooms by the food quarter");
+        
+        // add items
+        
+        pandora = addToRoom(pandora, pandoraItems);
         
         // initialise room exits
         spawnPoint.setExit("east", hallwayEast);
@@ -365,6 +369,22 @@ public class Game
         
         hungerLevel += 5;
             
+    }
+    
+    /**
+     * add a items to the room
+     * @param room The room in which the item is going to be add
+     * @param item[] The item(s) that are going to be add
+     * 
+     * @return The room with the items in it
+     */
+    private Room addToRoom(Room room, Item item[])
+    {
+        for(int i = 0; i < item.length; i++)
+        {
+            room.addItem(item[i]);
+        }
+        return room;
     }
     
     /**
