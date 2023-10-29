@@ -1,8 +1,8 @@
 import java.util.Stack;
 /**
- *  This class is the main class of the "World of Zuul" application. 
- *  "World of Zuul" is a very simple, text based adventure game.  Users 
- *  can walk around some scenery. That's all. It should really be extended 
+ *  This class is the main class of the "Lost in mall" application. 
+ *  "Lost in mall" is a very simple, text based adventure game.  Users 
+ *  can walk around some scenery and find keys so they can win the game. That's all. It should really be extended 
  *  to make it more interesting!
  * 
  *  To play this game, create an instance of this class and call the "play"
@@ -50,6 +50,10 @@ public class Game
         gamestop, bloomingdales,bloomingdalesSecondFloor, bloomingdalesThirdFloor, 
         hallwayNorth, att, apple, secondFloor,  forever21, claires, lego, starbucks, thirdFloor, cinema, garage, 
         holister, foodQuarter, exit, restroom;
+        
+        Item ring;
+        
+        ring = new Item("Ring: A beatiful diamong ring at the top of the counter", 1);
       
         // create the rooms
         spawnPoint = new Room("in the main entrance of the mall(1st floor)");
@@ -61,7 +65,7 @@ public class Game
         hallwayWestThirdFloor = new Room("in the west hallway of the mall(3rd floor)");
         hallwayNorth = new Room("in the north hallway of the mall(1st floor)");
         pink = new Room("in the clothing store, Pink");
-        pandora = new Room("in the jewery store, Pandora");
+        pandora = new Room("in the jewery store, Pandora", ring);
         macys = new Room("in the store of Macy's");
         macysSecondFloor = new Room("in the second floor of Macy's");
         macysThirdFloor = new Room("in the third floor of Macy's");
