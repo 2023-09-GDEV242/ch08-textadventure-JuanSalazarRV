@@ -1,3 +1,4 @@
+import java.util.Stack;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -20,6 +21,8 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Room previousRoom;
+    private Room roomStacks[];
+    private int top;
         
     /**
      * Create the game and initialise its internal map.
@@ -28,6 +31,8 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        roomStacks = new Room[1000];
+        top = -1;
     }
 
     /**
@@ -292,7 +297,7 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
-            previousRoom = currentRoom;
+            push(currentRoom);
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
@@ -304,9 +309,34 @@ public class Game
     
     private void goBack()
     {
-        currentRoom = previousRoom;
-        System.out.println(currentRoom.getLongDescription());
+        currentRoom = pop();
         
+        if(currentRoom != null)
+            System.out.println(currentRoom.getLongDescription());
+        
+    }
+    /**
+     * Adds or "push" a room to an stack.
+     */
+    private void push(Room room)
+    {
+        if(top == roomStacks.length - 1)
+            System.out.println("Max capacity of room stacks have been reached!!");
+        else
+            roomStacks[++top] = room;
+    }
+    
+    /**
+     * deletes or "pop" the room at the top of the stack
+     * @return room at top only if exits. If not, it returns null.
+     */
+    private Room pop()
+    {
+        if(top < 0)
+            return null;
+        else
+            return 
+                roomStacks[top--];
     }
 
     /** 
