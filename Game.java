@@ -23,6 +23,9 @@ public class Game
     private Room previousRoom;
     private Room roomStacks[];
     private int top;
+    private int timeHours;
+    private int timeMin;
+    private final int TIME_LIMIT = 6;
         
     /**
      * Create the game and initialise its internal map.
@@ -192,8 +195,21 @@ public class Game
                 
         boolean finished = false;
         while (! finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
+            if(timeHours >= TIME_LIMIT)
+            {
+                System.out.println("Time is up! Its "+ TIME_LIMIT+ " am");
+                finished = true;
+            }
+            else{
+                Command command = parser.getCommand();
+                finished = processCommand(command);
+                timeMin += 5;
+                if(timeMin == 60)
+                {
+                    timeHours++;
+                    timeMin = 0;
+                }
+            }
         }
         System.out.println("Thank you for playing.  Good bye.");
     }
@@ -206,7 +222,7 @@ public class Game
         System.out.println();
         System.out.println("Welcome to 'lost in mall'");
         System.out.println("You have been trap inside the mall after closing");
-        System.out.println("You need to find a way to get out");
+        System.out.println("You need to find a way to get out before they open at "+ TIME_LIMIT + " AM");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -247,6 +263,10 @@ public class Game
             case BACK:
                 goBack();
                 break;
+                
+            case TIME:
+                printTime();
+                break;
                
             case QUIT:
                 wantToQuit = quit(command);
@@ -270,7 +290,23 @@ public class Game
         System.out.println("Your command words are:");
         parser.showCommands();
     }
+    /**
+     * prints the current time.
+     */
+    private void printTime()
+    {
+
+        if(timeMin < 10)
+            System.out.printf("It's %d:0%d A.M",timeHours, timeMin);
+        else
+            System.out.printf("It's %d:%d A.M",timeHours, timeMin);
+        System.out.println();
+        System.out.println("You have " + (TIME_LIMIT - timeHours) + " hours left");
+    }
     
+    /**
+     * prints the description of the current room
+     */
     private void look()
     {   
      System.out.println(currentRoom.getLongDescription());
