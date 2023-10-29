@@ -465,4 +465,13 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
+    
+    /**
+     * Main method to execute the code
+     * @param args
+     */
+    public static void main(String[] args){
+        Game game = new Game();
+        game.play();
+    }
 }
