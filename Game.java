@@ -26,6 +26,7 @@ public class Game
     private int timeHours;
     private int timeMin;
     private final int TIME_LIMIT = 6;
+    private int hungerLevel;
         
     /**
      * Create the game and initialise its internal map.
@@ -36,6 +37,7 @@ public class Game
         parser = new Parser();
         roomStacks = new Room[1000];
         top = -1;
+        hungerLevel = 0;
     }
 
     /**
@@ -50,7 +52,7 @@ public class Game
         holister, foodQuarter, exit, restroom;
       
         // create the rooms
-        spawnPoint = new Room("in the main Entrance of the mall(1st floor)");
+        spawnPoint = new Room("in the main entrance of the mall(1st floor)");
         hallwayEast = new Room("in the east hallway of the mall(1st floor)");
         hallwayEastSecondFloor = new Room("in the east hallway of the mall(2nd floor)");
         hallwayEastThirdFloor = new Room("in the east hallway of the mall(3rd floor)");
@@ -70,17 +72,17 @@ public class Game
         bloomingdalesThirdFloor = new Room("in the third floor of Bloomingdales");
         att = new Room("in the phone store, AT&T");
         apple = new Room("in the phone store, Apple");
-        secondFloor = new Room("at the top of the stairs second floor of the mall");
+        secondFloor = new Room("at the top of the stairs of the second floor of the mall");
         forever21 = new Room("in the clothing store, Forever 21");
         claires = new Room("in the store of Claire's");
         lego = new Room("in the Lego store");
         starbucks = new Room("in the coffee store, Starbucks");
-        thirdFloor = new Room("at the top of the stairs third floor of the mall");
+        thirdFloor = new Room("at the top of the stairs of the third floor of the mall");
         cinema = new Room("in the cinema");
         garage = new Room("in the clothing store, Garage");
         holister = new Room("in the clothing store, Holister");
         foodQuarter = new Room("in the food quarter of the mall");
-        exit = new Room("in the main Exit");
+        exit = new Room("in the main exit");
         restroom = new Room("in the restrooms by the food quarter");
         
         // initialise room exits
@@ -200,10 +202,18 @@ public class Game
                 System.out.println("Time is up! Its "+ TIME_LIMIT+ " am");
                 finished = true;
             }
+            
+            else if(hungerLevel == 100)
+            {
+                System.out.println("You have die due to starvation.");
+                finished = true;
+            }
+            
             else{
                 Command command = parser.getCommand();
                 finished = processCommand(command);
                 timeMin += 5;
+                checkHungerLevels();
                 if(timeMin == 60)
                 {
                     timeHours++;
@@ -258,6 +268,7 @@ public class Game
                 
             case EAT:
                 System.out.println("You have eaten now, you are not hungry anymore.");
+                hungerLevel = 0;
                 break;
                 
             case BACK:
@@ -337,6 +348,19 @@ public class Game
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
+    }
+    /**
+     * checks whether the player is hungry or not.
+     */
+    private void checkHungerLevels()
+    {
+        if(hungerLevel == 50)
+            System.out.println("You are getting hungry, do not forget to eat");
+        else if(hungerLevel == 85)
+            System.out.println("You are extremely hungry, you should eat something now");
+        
+        hungerLevel += 5;
+            
     }
     
     /**
