@@ -1,4 +1,7 @@
 import java.util.Stack;
+import java.util.Collections;
+import java.util.ArrayList;
+
 /**
  *  This class is the main class of the "Lost in mall" application. 
  *  "Lost in mall" is a very simple, text based adventure game.  Users 
@@ -49,11 +52,21 @@ public class Game
         macysThirdFloor, hallwayWest, hallwayWestSecondFloor, hallwayWestThirdFloor, hottopic, 
         gamestop, bloomingdales,bloomingdalesSecondFloor, bloomingdalesThirdFloor, 
         hallwayNorth, att, apple, secondFloor,  forever21, claires, lego, starbucks, thirdFloor, cinema, garage, 
-        holister, foodQuarter, exit,exit2, exit3, exit4, exit5, restroom;
+        holister, foodQuarter, mainExit,exit2, exit3, exit4, exit5, restroom;
         
         Item pandoraItems[] = {new Item("ring",1)};
         
+        ArrayList<String> exitMall = new ArrayList<>();
+        exitMall.add("Door is lock, try find another exit.");
+        exitMall.add("Door is lock, try find another exit.");
+        exitMall.add("Door is lock, try find another exit.");
+        exitMall.add("Door is unlocked, You found the exit!");
         
+        Collections.shuffle(exitMall);
+        exit2 = new Room("in the west exit in Bloomingdale's(2nd floor). \n" + exitMall.get(0));
+        exit3 = new Room("in the east exit in Macy's(3rd floor). \n" + exitMall.get(1));
+        exit4 = new Room("in the west exit in the cinema. \n" + exitMall.get(2));
+        exit5 = new Room("in the south exit in the food quarter. \n" + exitMall.get(3));
       
         // create the rooms
         spawnPoint = new Room("in the main entrance of the mall(1st floor)");
@@ -86,11 +99,7 @@ public class Game
         garage = new Room("in the clothing store, Garage");
         holister = new Room("in the clothing store, Holister");
         foodQuarter = new Room("in the food quarter of the mall");
-        exit = new Room("in the main exit. \nDoor is lock, try find another exit.");
-        exit2 = new Room("in the main exit. \nDoor is lock, try find another exit.");
-        exit3 = new Room("in the main exit. \nDoor is lock, try find another exit.");
-        exit4 = new Room("in the main exit. \nDoor is lock, try find another exit.");
-        exit5 = new Room("in the main exit. Door is unlocked, You found the exit!");
+        mainExit = new Room("in the main exit. \nDoor is lock, try find another exit.");
         restroom = new Room("in the restrooms by the food quarter");
         
         // add items
@@ -101,7 +110,7 @@ public class Game
         spawnPoint.setExit("east", hallwayEast);
         spawnPoint.setExit("north", hallwayNorth);
         spawnPoint.setExit("west", hallwayWest);
-        spawnPoint.setExit("south", exit);
+        spawnPoint.setExit("south", mainExit);
         
         hallwayEast.setExit("north", pink);
         hallwayEast.setExit("east", macys);
@@ -118,7 +127,11 @@ public class Game
         hallwayWest.setExit("south", gamestop);
         hallwayWest.setExit("north", hottopic);
         
-        exit.setExit("north", spawnPoint);
+        mainExit.setExit("north", spawnPoint);
+        exit2.setExit("east", bloomingdalesSecondFloor);
+        exit3.setExit("west", macysThirdFloor);
+        exit4.setExit("east", cinema);
+        exit5.setExit("north", foodQuarter);
         
         pink.setExit("south", hallwayEast);
         pandora.setExit("north", hallwayEast);
@@ -131,6 +144,7 @@ public class Game
         
         macysThirdFloor.setExit("west", hallwayEastThirdFloor);
         macysThirdFloor.setExit("south", macysSecondFloor);
+        macysThirdFloor.setExit("east", exit3);
         
         apple.setExit("east", hallwayNorth);
         att.setExit("west", hallwayNorth);
@@ -144,6 +158,7 @@ public class Game
         bloomingdalesSecondFloor.setExit("north", bloomingdalesThirdFloor);
         bloomingdalesSecondFloor.setExit("east", hallwayWestSecondFloor);
         bloomingdalesSecondFloor.setExit("south", bloomingdales);
+        bloomingdalesSecondFloor.setExit("west", exit2);
         
         bloomingdalesThirdFloor.setExit("east", hallwayWestThirdFloor);
         bloomingdalesThirdFloor.setExit("south", bloomingdalesSecondFloor);
@@ -188,8 +203,11 @@ public class Game
         holister.setExit("south", hallwayEastThirdFloor);
         foodQuarter.setExit("north", hallwayEastThirdFloor);
         foodQuarter.setExit("west", restroom);
+        foodQuarter.setExit("south", exit5);
+        
         
         cinema.setExit("south", hallwayWestThirdFloor);
+        cinema.setExit("west", exit4);
         garage.setExit("north", hallwayWestThirdFloor);
         
         restroom.setExit("east", foodQuarter);
