@@ -3,7 +3,7 @@
  * This class creates items for the game.
  *
  * @author Juan J salazar
- * @version 2023.10.27
+ * @version 2023.10.29
  */
 public class Item
 {
