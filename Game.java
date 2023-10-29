@@ -49,7 +49,7 @@ public class Game
         macysThirdFloor, hallwayWest, hallwayWestSecondFloor, hallwayWestThirdFloor, hottopic, 
         gamestop, bloomingdales,bloomingdalesSecondFloor, bloomingdalesThirdFloor, 
         hallwayNorth, att, apple, secondFloor,  forever21, claires, lego, starbucks, thirdFloor, cinema, garage, 
-        holister, foodQuarter, exit, restroom;
+        holister, foodQuarter, exit,exit2, exit3, exit4, exit5, restroom;
         
         Item pandoraItems[] = {new Item("ring",1)};
         
@@ -86,7 +86,11 @@ public class Game
         garage = new Room("in the clothing store, Garage");
         holister = new Room("in the clothing store, Holister");
         foodQuarter = new Room("in the food quarter of the mall");
-        exit = new Room("in the main exit");
+        exit = new Room("in the main exit. \nDoor is lock, try find another exit.");
+        exit2 = new Room("in the main exit. \nDoor is lock, try find another exit.");
+        exit3 = new Room("in the main exit. \nDoor is lock, try find another exit.");
+        exit4 = new Room("in the main exit. \nDoor is lock, try find another exit.");
+        exit5 = new Room("in the main exit. Door is unlocked, You found the exit!");
         restroom = new Room("in the restrooms by the food quarter");
         
         // add items
@@ -214,6 +218,11 @@ public class Game
             else if(hungerLevel == 100)
             {
                 System.out.println("You have die due to starvation.");
+                finished = true;
+            }
+            
+            else if(currentRoom.getShortDescription().contains("Door is unlocked, You found the exit!"))
+            {
                 finished = true;
             }
             
